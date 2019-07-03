@@ -12,6 +12,8 @@
 		02111DB822CD01EE00803606 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02111DB622CD01EE00803606 /* Main.storyboard */; };
 		02111DBA22CD021500803606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02111DB922CD021500803606 /* Assets.xcassets */; };
 		02111DBD22CD021500803606 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02111DBB22CD021500803606 /* LaunchScreen.storyboard */; };
+		02111DC522CD06A700803606 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02111DC422CD06A700803606 /* Book.swift */; };
+		02111DC722CD0A5900803606 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02111DC622CD0A5900803606 /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		02111DB922CD021500803606 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02111DBC22CD021500803606 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02111DBE22CD021500803606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02111DC422CD06A700803606 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		02111DC622CD0A5900803606 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				02111DB922CD021500803606 /* Assets.xcassets */,
 				02111DBB22CD021500803606 /* LaunchScreen.storyboard */,
 				02111DBE22CD021500803606 /* Info.plist */,
+				02111DC422CD06A700803606 /* Book.swift */,
+				02111DC622CD0A5900803606 /* Service.swift */,
 			);
 			path = "Project-Prep";
 			sourceTree = "<group>";
@@ -136,6 +142,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				02111DB522CD01ED00803606 /* ViewController.swift in Sources */,
+				02111DC722CD0A5900803606 /* Service.swift in Sources */,
+				02111DC522CD06A700803606 /* Book.swift in Sources */,
 				02111DB322CD01ED00803606 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
