@@ -8,21 +8,21 @@
 
 import Foundation
 
-struct items: Codable {
+struct Items: Decodable {
     
     let volumeInfo: [Book]
     
 }
 
-class Book: Codable {
+struct Book: Decodable {
     
     let title: String
-    let authors: [Author]
+    let authors: [String]
     let publisher: String
     let publishDate: String
     let description: String
     
-    init (title: String, authors: [Author], publisher: String, publishDate: String, description: String)  {
+    init (title: String, authors: [String], publisher: String, publishDate: String, description: String)  {
         self.title = title
         self.authors = authors
         self.publisher = publisher
@@ -31,11 +31,3 @@ class Book: Codable {
     }
 }
     
-
-
-struct Author: Codable {
-    
-    let first: String?
-    let second: String?
-    
-}
