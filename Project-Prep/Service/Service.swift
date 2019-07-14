@@ -9,11 +9,13 @@
 import UIKit
 
 
-class serviceLayer {
+class Service {
+    
+
     
     let booksURL = "https://www.googleapis.com/books/v1/volumes?q=MarkTwain"
     
-    func downloadJSON() {
+    func downloadJSON(completionHandler: @escaping (Books) -> Void ) {
         
         guard let downloadURL = URL(string: booksURL) else {
             print("invalid URL address")
@@ -30,8 +32,9 @@ class serviceLayer {
                 return
             }
             do {
-                let book = try JSONDecoder().decode(Items.self, from: data)
-                print(book.volumeInfo[0].title)
+                let books = try JSONDecoder().decode(Books.self, from: data)
+                print(books.items[0].volumeInfo.title)
+                completionHandler(books)
             }
             catch let jsonError {
                 print("Something wrong with JSON", jsonError)

@@ -8,9 +8,14 @@
 
 import Foundation
 
+struct Books: Decodable {
+
+let items: [Items]
+}
+
 struct Items: Decodable {
     
-    let volumeInfo: [Book]
+    let volumeInfo: Book
     
 }
 
@@ -18,16 +23,16 @@ struct Book: Decodable {
     
     let title: String
     let authors: [String]
-    let publisher: String
-    let publishDate: String
-    let description: String
+    let publisher: String?
+    let publishedDate: String?
+    let description: String?
     
-    init (title: String, authors: [String], publisher: String, publishDate: String, description: String)  {
+ /*   init (title: String, authors: [String], publisher: String, publishDate: String, description: String)  {
         self.title = title
         self.authors = authors
         self.publisher = publisher
-        self.publishDate = publishDate
+        self.publishedDate = publishDate
         self.description = description
-    }
+    } */
 }
     

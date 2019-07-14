@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EvR-Ta-Olg">
-                                <rect key="frame" x="79" y="80" width="217" height="29"/>
+                                <rect key="frame" x="107" y="80" width="161" height="29"/>
                                 <segments>
                                     <segment title="Table View"/>
-                                    <segment title="Collection View"/>
+                                    <segment title="Table View"/>
                                 </segments>
                                 <connections>
                                     <action selector="switchAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="Gog-qf-C9g"/>
@@ -112,7 +112,6 @@
                     </view>
                     <connections>
                         <outlet property="TableView" destination="Aw0-bB-hIQ" id="aAF-KR-ORl"/>
-                        <outlet property="tableView" destination="Aw0-bB-hIQ" id="SlF-Gy-mKh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="foD-UY-eLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,7 +162,6 @@
                     </view>
                     <connections>
                         <outlet property="CollectionView" destination="y7r-ea-d2s" id="OE6-Io-1Kh"/>
-                        <outlet property="collectionViewOne" destination="y7r-ea-d2s" id="rfg-Ct-YJb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TB9-rp-uPO" userLabel="First Responder" sceneMemberID="firstResponder"/>
