@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     
     var service = Service()
-    var books: [Book] = []
+    var books: [Items] = []
     enum Screen: CGFloat {
         case fade, unfade
     }
@@ -26,16 +26,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        service.downloadJSON { [weak self](item) in
+    service.downloadJSON { [weak self](item) in
+        self?.books = item.items
             DispatchQueue.main.async {
-                if self?.firstPage == true {
-                    if self?.CollectionView != nil {
-                        self?.CollectionView.reloadData() }
-                } else { if self?.TableView != nil {
-                    self?.TableView.reloadData() }
+                if self?.CollectionView != nil {
+                        self?.CollectionView.reloadData()
                 }
+                if self?.TableView != nil {
+                    self?.TableView.reloadData() }
             }
         }
+        
         let tableNib = UINib(nibName: "TableViewCell", bundle: nil)
         let collectionNib = UINib(nibName: "CollectionViewCell", bundle: nil)
         if  TableView != nil  {
@@ -74,8 +75,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
-        let book = books[indexPath.row]
-        cell.customInit(textOne: book.title, textTwo: book.authors[0], textThree: book.publisher, textFour: book.publishedDate)
+        let book = books[indexPath.row].volumeInfo
+        cell.customInit(textOne: book.title, textTwo: book.authors[0], textThree: (book.publisher ?? ""), textFour: (book.publishedDate ?? ""))
         return cell
     }
     
@@ -95,8 +96,8 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
-        let book = books[indexPath.row]
-        cell.customInit(textOne: book.title, textTwo: book.authors[0], textThree: book.publisher, textFour: book.publishedDate)
+        let book = books[indexPath.row].volumeInfo
+        cell.customInit(textOne: book.title, textTwo: book.authors[0], textThree: (book.publisher ?? ""), textFour: (book.publishedDate ?? "") )
         
         return cell
     }
