@@ -28,14 +28,21 @@
                                     <action selector="switchAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="Gog-qf-C9g"/>
                                 </connections>
                             </segmentedControl>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="kHK-ou-hb9">
+                                <rect key="frame" x="0.0" y="108" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="O48-Bl-nsN"/>
+                                </connections>
+                            </searchBar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOg-hd-58j" userLabel="Container View 1">
-                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
                                 <connections>
                                     <segue destination="kwj-bO-8cR" kind="embed" identifier="seguetoTableView" id="ZFR-JX-vFz"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyX-Ty-tXl" userLabel="Container View 2">
-                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
                                 <connections>
                                     <segue destination="lCi-vd-rgC" kind="embed" identifier="seguetoCollectionView" id="d0l-XA-42i"/>
                                 </connections>
@@ -43,15 +50,18 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="gOg-hd-58j" firstAttribute="top" secondItem="kHK-ou-hb9" secondAttribute="bottom" constant="-12" id="04T-aR-UPn"/>
                             <constraint firstItem="EvR-Ta-Olg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="6Uk-w8-SnR"/>
                             <constraint firstItem="EvR-Ta-Olg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Dlz-PF-xLu"/>
+                            <constraint firstItem="kHK-ou-hb9" firstAttribute="top" secondItem="EvR-Ta-Olg" secondAttribute="bottom" id="J0s-4O-2TV"/>
+                            <constraint firstItem="kHK-ou-hb9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OTc-OH-Uci"/>
+                            <constraint firstItem="kHK-ou-hb9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OYI-Nu-pjC"/>
                             <constraint firstItem="HyX-Ty-tXl" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="WqH-7V-Kqe"/>
                             <constraint firstItem="HyX-Ty-tXl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XZK-55-d63"/>
                             <constraint firstItem="gOg-hd-58j" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bVc-om-Prj"/>
                             <constraint firstItem="gOg-hd-58j" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eN8-aH-tIW"/>
-                            <constraint firstItem="HyX-Ty-tXl" firstAttribute="top" secondItem="EvR-Ta-Olg" secondAttribute="bottom" constant="16" id="pFN-eE-fVc"/>
+                            <constraint firstItem="HyX-Ty-tXl" firstAttribute="top" secondItem="kHK-ou-hb9" secondAttribute="bottom" constant="-12" id="gD7-pN-RLR"/>
                             <constraint firstAttribute="bottom" secondItem="HyX-Ty-tXl" secondAttribute="bottom" id="vBp-gZ-EIU"/>
-                            <constraint firstItem="gOg-hd-58j" firstAttribute="top" secondItem="EvR-Ta-Olg" secondAttribute="bottom" constant="16" id="vid-mb-qTG"/>
                             <constraint firstAttribute="bottom" secondItem="gOg-hd-58j" secondAttribute="bottom" id="wiU-Sa-Vcw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -59,6 +69,7 @@
                     <navigationItem key="navigationItem" id="DK7-lJ-5am"/>
                     <connections>
                         <outlet property="firstView" destination="gOg-hd-58j" id="zt3-Qw-rID"/>
+                        <outlet property="searchBar" destination="kHK-ou-hb9" id="lBK-wJ-XTT"/>
                         <outlet property="secondView" destination="HyX-Ty-tXl" id="kzP-eD-Akc"/>
                     </connections>
                 </viewController>
@@ -89,11 +100,11 @@
             <objects>
                 <viewController storyboardIdentifier="TableView" id="kwj-bO-8cR" customClass="ViewController" customModule="Project_Prep" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cuP-dO-z02">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="515"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Aw0-bB-hIQ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="kwj-bO-8cR" id="G2o-zI-M2d"/>
@@ -123,11 +134,11 @@
             <objects>
                 <viewController storyboardIdentifier="CollectionView" id="lCi-vd-rgC" customClass="ViewController" customModule="Project_Prep" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rsX-zJ-CJ2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="515"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y7r-ea-d2s">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7RU-MQ-x6j">
                                     <size key="itemSize" width="150" height="148"/>

@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var secondView: UIView!
     @IBOutlet weak var TableView: UITableView!
     @IBOutlet weak var CollectionView: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     
     var service = Service()
@@ -22,11 +23,12 @@ class ViewController: UIViewController {
         case fade, unfade
     }
     var firstPage: Bool = true
+    var searchTerm: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    service.downloadJSON { [weak self](item) in
+        service.downloadJSON { [weak self](item) in
         self?.books = item.items
             DispatchQueue.main.async {
                 if self?.CollectionView != nil {
@@ -36,7 +38,7 @@ class ViewController: UIViewController {
                     self?.TableView.reloadData() }
             }
         }
-        
+        setUpSearchBar()
         let tableNib = UINib(nibName: "TableViewCell", bundle: nil)
         let collectionNib = UINib(nibName: "CollectionViewCell", bundle: nil)
         if  TableView != nil  {
@@ -56,14 +58,25 @@ class ViewController: UIViewController {
         if sender.selectedSegmentIndex == 0 {
             firstView.alpha = Screen.fade.rawValue
             secondView.alpha = Screen.unfade.rawValue
-            firstPage = true
         } else {
             firstView.alpha = Screen.unfade.rawValue
             secondView.alpha = Screen.fade.rawValue
-            firstPage = false
         }
     }
+}
 
+extension ViewController: UISearchBarDelegate {
+    private func setUpSearchBar() {
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+     //  guard let text = searchBar.text else { return false }
+     //  searchTerm = text
+    }
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        //
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -76,7 +89,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         let book = books[indexPath.row].volumeInfo
-        cell.customInit(textOne: book.title, textTwo: book.authors[0], textThree: (book.publisher ?? ""), textFour: (book.publishedDate ?? ""))
+        cell.customInit(imageString: book.imageLinks.thumbnail, textOne: book.title, textTwo: book.authors[0], textThree: (book.publisher ?? ""), textFour: (book.publishedDate ?? ""))
         return cell
     }
     

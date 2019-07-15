@@ -26,13 +26,10 @@ struct Book: Decodable {
     let publisher: String?
     let publishedDate: String?
     let description: String?
-    
- /*   init (title: String, authors: [String], publisher: String, publishDate: String, description: String)  {
-        self.title = title
-        self.authors = authors
-        self.publisher = publisher
-        self.publishedDate = publishDate
-        self.description = description
-    } */
+    let imageLinks: Links
 }
-    
+
+struct Links: Decodable {
+    let smallThumbnail: String
+    let thumbnail: String
+}
