@@ -38,18 +38,15 @@ class ViewController: UIViewController {
                     self?.TableView.reloadData() }
             }
         }
-        setUpSearchBar()
         let tableNib = UINib(nibName: "TableViewCell", bundle: nil)
         let collectionNib = UINib(nibName: "CollectionViewCell", bundle: nil)
         if  TableView != nil  {
             TableView.register(tableNib, forCellReuseIdentifier: "tableViewCell")
-            TableView.reloadData()
         }
         if CollectionView != nil {
             CollectionView.register(collectionNib, forCellWithReuseIdentifier: "collectionViewCell")
-            CollectionView.reloadData()
         }
-        // Do any additional setup after loading the view.
+        setUpSearchBar()
     }
     
 
@@ -71,11 +68,16 @@ extension ViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-     //  guard let text = searchBar.text else { return false }
+        service.searchTerm = searchBar.text ?? ""
+        if CollectionView != nil {
+            CollectionView.reloadData()
+        }
+        if TableView != nil {
+            TableView.reloadData() }
      //  searchTerm = text
     }
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        //
+      //  <#code#>
     }
 }
 

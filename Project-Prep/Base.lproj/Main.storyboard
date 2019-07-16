@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EvR-Ta-Olg">
-                                <rect key="frame" x="79" y="80" width="217" height="29"/>
+                                <rect key="frame" x="79" y="621" width="217" height="29"/>
                                 <segments>
                                     <segment title="Collection View"/>
                                     <segment title="Table View"/>
@@ -29,20 +29,20 @@
                                 </connections>
                             </segmentedControl>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="kHK-ou-hb9">
-                                <rect key="frame" x="0.0" y="108" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="O48-Bl-nsN"/>
                                 </connections>
                             </searchBar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOg-hd-58j" userLabel="Container View 1">
-                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="493"/>
                                 <connections>
                                     <segue destination="kwj-bO-8cR" kind="embed" identifier="seguetoTableView" id="ZFR-JX-vFz"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyX-Ty-tXl" userLabel="Container View 2">
-                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="493"/>
                                 <connections>
                                     <segue destination="lCi-vd-rgC" kind="embed" identifier="seguetoCollectionView" id="d0l-XA-42i"/>
                                 </connections>
@@ -50,19 +50,20 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gOg-hd-58j" firstAttribute="top" secondItem="kHK-ou-hb9" secondAttribute="bottom" constant="-12" id="04T-aR-UPn"/>
-                            <constraint firstItem="EvR-Ta-Olg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="6Uk-w8-SnR"/>
-                            <constraint firstItem="EvR-Ta-Olg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Dlz-PF-xLu"/>
-                            <constraint firstItem="kHK-ou-hb9" firstAttribute="top" secondItem="EvR-Ta-Olg" secondAttribute="bottom" id="J0s-4O-2TV"/>
-                            <constraint firstItem="kHK-ou-hb9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OTc-OH-Uci"/>
-                            <constraint firstItem="kHK-ou-hb9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OYI-Nu-pjC"/>
-                            <constraint firstItem="HyX-Ty-tXl" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="WqH-7V-Kqe"/>
-                            <constraint firstItem="HyX-Ty-tXl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XZK-55-d63"/>
-                            <constraint firstItem="gOg-hd-58j" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bVc-om-Prj"/>
-                            <constraint firstItem="gOg-hd-58j" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eN8-aH-tIW"/>
-                            <constraint firstItem="HyX-Ty-tXl" firstAttribute="top" secondItem="kHK-ou-hb9" secondAttribute="bottom" constant="-12" id="gD7-pN-RLR"/>
-                            <constraint firstAttribute="bottom" secondItem="HyX-Ty-tXl" secondAttribute="bottom" id="vBp-gZ-EIU"/>
-                            <constraint firstAttribute="bottom" secondItem="gOg-hd-58j" secondAttribute="bottom" id="wiU-Sa-Vcw"/>
+                            <constraint firstItem="EvR-Ta-Olg" firstAttribute="top" secondItem="gOg-hd-58j" secondAttribute="bottom" constant="8" id="2Az-HH-mhX"/>
+                            <constraint firstItem="kHK-ou-hb9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="4ba-b0-6bM"/>
+                            <constraint firstItem="EvR-Ta-Olg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="79" id="AGd-77-1o5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EvR-Ta-Olg" secondAttribute="trailing" constant="79" id="JZd-ud-hmk"/>
+                            <constraint firstItem="gOg-hd-58j" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="NGN-xD-qXu"/>
+                            <constraint firstItem="kHK-ou-hb9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Puz-c3-wtR"/>
+                            <constraint firstItem="gOg-hd-58j" firstAttribute="top" secondItem="kHK-ou-hb9" secondAttribute="bottom" id="ReF-yH-E9x"/>
+                            <constraint firstItem="kHK-ou-hb9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="foX-R1-drs"/>
+                            <constraint firstItem="EvR-Ta-Olg" firstAttribute="top" secondItem="HyX-Ty-tXl" secondAttribute="bottom" constant="8" id="fqY-0X-hQe"/>
+                            <constraint firstItem="HyX-Ty-tXl" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="h6e-cm-WJ1"/>
+                            <constraint firstItem="HyX-Ty-tXl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pRH-Rn-eto"/>
+                            <constraint firstItem="gOg-hd-58j" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sXL-Vr-hkD"/>
+                            <constraint firstItem="HyX-Ty-tXl" firstAttribute="top" secondItem="kHK-ou-hb9" secondAttribute="bottom" id="xQd-zV-844"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EvR-Ta-Olg" secondAttribute="bottom" constant="18" id="xRy-9Y-i4g"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -100,11 +101,11 @@
             <objects>
                 <viewController storyboardIdentifier="TableView" id="kwj-bO-8cR" customClass="ViewController" customModule="Project_Prep" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cuP-dO-z02">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="515"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="493"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Aw0-bB-hIQ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="493"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="kwj-bO-8cR" id="G2o-zI-M2d"/>
@@ -134,11 +135,11 @@
             <objects>
                 <viewController storyboardIdentifier="CollectionView" id="lCi-vd-rgC" customClass="ViewController" customModule="Project_Prep" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rsX-zJ-CJ2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="515"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="493"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y7r-ea-d2s">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="493"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7RU-MQ-x6j">
                                     <size key="itemSize" width="150" height="148"/>
