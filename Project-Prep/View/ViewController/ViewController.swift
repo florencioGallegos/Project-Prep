@@ -10,77 +10,76 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var firstView: UIView!
-    @IBOutlet weak var secondView: UIView!
-    @IBOutlet weak var TableView: UITableView!
-    @IBOutlet weak var CollectionView: UICollectionView!
+ 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var segmentSwitch: UISegmentedControl!
     
     
     var service = Service()
     var books: [Items] = []
+    var filteredBooks: [Items] = []
     enum Screen: CGFloat {
         case fade, unfade
     }
-    var firstPage: Bool = true
-    var searchTerm: String = ""
+    var firstPage = true
+    var searchTerm = ""
+    var isSearching = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        service.downloadJSON { [weak self](item) in
-        self?.books = item.items
-            DispatchQueue.main.async {
-                if self?.CollectionView != nil {
-                        self?.CollectionView.reloadData()
-                }
-                if self?.TableView != nil {
-                    self?.TableView.reloadData() }
-            }
-        }
-        let tableNib = UINib(nibName: "TableViewCell", bundle: nil)
+        
+        if tableView != nil {
+            tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell") }
+        if collectionView != nil {
+            collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCell") }
+   /*     let tableNib = UINib(nibName: "TableViewCell", bundle: nil)
         let collectionNib = UINib(nibName: "CollectionViewCell", bundle: nil)
-        if  TableView != nil  {
-            TableView.register(tableNib, forCellReuseIdentifier: "tableViewCell")
+        if  tableView != nil  {
+            tableView.register(tableNib, forCellReuseIdentifier: "tableViewCell")
         }
-        if CollectionView != nil {
-            CollectionView.register(collectionNib, forCellWithReuseIdentifier: "collectionViewCell")
-        }
-        setUpSearchBar()
+        if collectionView != nil {
+            collectionView.register(collectionNib, forCellWithReuseIdentifier: "collectionViewCell")
+        } */
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.serviceCall()
     }
     
-
+    func serviceCall () {
+        service.downloadJSON { [self](item) in
+            self.books = item.items!
+            DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.tableView.reloadData()
+            }
+         }
+    }
+    
     @IBAction func switchAction(_ sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
-            firstView.alpha = Screen.fade.rawValue
-            secondView.alpha = Screen.unfade.rawValue
+            tableView.alpha = Screen.fade.rawValue
+            collectionView.alpha = Screen.unfade.rawValue
         } else {
-            firstView.alpha = Screen.unfade.rawValue
-            secondView.alpha = Screen.fade.rawValue
+            tableView.alpha = Screen.unfade.rawValue
+            collectionView.alpha = Screen.fade.rawValue
         }
     }
 }
 
 extension ViewController: UISearchBarDelegate {
-    private func setUpSearchBar() {
-        
-    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        service.searchTerm = searchBar.text ?? ""
-        if CollectionView != nil {
-            CollectionView.reloadData()
+        if !searchText.isEmpty {
+            service.searchTerm = searchText
+            self.serviceCall()
         }
-        if TableView != nil {
-            TableView.reloadData() }
-     //  searchTerm = text
-    }
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-      //  <#code#>
-    }
 }
-
+}
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,7 +90,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         let book = books[indexPath.row].volumeInfo
-        cell.customInit(imageString: book.imageLinks.thumbnail, textOne: book.title, textTwo: book.authors[0], textThree: (book.publisher ?? ""), textFour: (book.publishedDate ?? ""))
+        cell.customInit(imageString: book.imageLinks?.thumbnail ?? "", textOne: book.title ?? "", textTwo: book.authors?[0] ?? "", textThree: (book.publisher ?? ""), textFour: (book.publishedDate ?? ""))
         return cell
     }
     
@@ -112,7 +111,7 @@ extension ViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
         let book = books[indexPath.row].volumeInfo
-        cell.customInit(textOne: book.title, textTwo: book.authors[0], textThree: (book.publisher ?? ""), textFour: (book.publishedDate ?? "") )
+        cell.customInit(textOne: book.title ?? "", textTwo: book.authors?[0] ?? "", textThree: (book.publisher ?? ""), textFour: (book.publishedDate ?? "") )
         
         return cell
     }

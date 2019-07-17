@@ -10,7 +10,7 @@ import Foundation
 
 struct Books: Decodable {
 
-let items: [Items]
+let items: [Items]?
 }
 
 struct Items: Decodable {
@@ -21,15 +21,15 @@ struct Items: Decodable {
 
 struct Book: Decodable {
     
-    let title: String
-    let authors: [String]
+    let title: String?
+    let authors: [String]?
     let publisher: String?
     let publishedDate: String?
     let description: String?
-    let imageLinks: Links
+    let imageLinks: Links?
 }
 
 struct Links: Decodable {
-    let smallThumbnail: String
-    let thumbnail: String
+    let smallThumbnail: String?
+    let thumbnail: String?
 }

@@ -30,7 +30,6 @@ class TableViewCell: UITableViewCell {
     func customInit(imageString: String, textOne: String, textTwo: String, textThree: String, textFour: String) {
         
         if let imageURL = URL(string: imageString) {
-            print(imageURL)
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: imageURL)
                     if let data = data {

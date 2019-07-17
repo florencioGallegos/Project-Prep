@@ -12,40 +12,31 @@ import UIKit
 class Service {
     
     
-    var booksURL = "https://www.googleapis.com/books/v1/volumes?q="
-    var searchTerm = "Mark Twain"
+    let booksURL = "https://www.googleapis.com/books/v1/volumes?q="
+    var searchTerm = "John F Kennedy"
     
     func downloadJSON(completionHandler: @escaping (Books) -> Void ) {
         
         let trimmedSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "")
-        print(trimmedSearchTerm)
-        booksURL.append(contentsOf: trimmedSearchTerm)
+        let urlString: String = booksURL + trimmedSearchTerm
         
-        guard let downloadURL = URL(string: booksURL) else {
+        guard let downloadURL = URL(string: urlString) else {
             print("invalid URL address")
             return
         }
-        
-        let completion: (Data?, URLResponse?, Error?)->Void = { (data, urlResponse, error) in
-            if error != nil {
-                print("Something is wrong with the download")
+        URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
+            guard let data = data, error == nil, urlResponse != nil else {
+                print("something is wrong with the download")
                 return
-            }
-            guard let data = data, urlResponse != nil else {
-                print("JSON not responding")
-                return
-            }
-            do {
-                let books = try JSONDecoder().decode(Books.self, from: data)
-            //    print(books.items[0].volumeInfo.title)
-                completionHandler(books)
-            }
-            catch let jsonError {
-                print("Something wrong with JSON", jsonError)
-            }
         }
-        
-        URLSession.shared.dataTask(with: downloadURL, completionHandler: completion).resume()
+            do {
+                let decoder = JSONDecoder()
+                let downloadbooks = try decoder.decode(Books.self, from: data)
+                completionHandler(downloadbooks)
+            } catch {
+                print("there is something wrong with the JSON")
+            }
+        }.resume()
     }
     
 }
