@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentSwitch: UISegmentedControl!
     
-    
     var service = Service()
     var books: [Items] = []
     enum Screen: CGFloat {
@@ -26,27 +25,27 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         if tableView != nil {
             tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell") }
         if collectionView != nil {
             collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCell") }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.serviceCall(searchString: "")
     }
     
     func serviceCall (searchString: String) {
-        service.downloadJSON(searchTerm: searchString) { [self](item) in
+        service.downloadJSON(searchTerm: searchString) { [weak self](item) in
             if item.items != nil {
-                self.books = item.items!  }
+                self?.books = item.items!  }
             else {
                 return
             }
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
-            self.tableView.reloadData()
+            self?.collectionView.reloadData()
+            self?.tableView.reloadData()
         }
     }
     }
@@ -68,9 +67,6 @@ extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
             var title = searchText
-             print("1: \(title.replacingOccurrences(of: " ", with: ""))")
-            print("2: \(title.replacingOccurrences(of: " ", with: ""))")
-          //  searchText.stringByAddingPercentWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
             self.serviceCall(searchString: title.replacingOccurrences(of: " ", with: ""))
         }
 }
