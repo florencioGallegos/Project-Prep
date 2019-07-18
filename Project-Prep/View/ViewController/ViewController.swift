@@ -19,13 +19,9 @@ class ViewController: UIViewController {
     
     var service = Service()
     var books: [Items] = []
-    var filteredBooks: [Items] = []
     enum Screen: CGFloat {
         case fade, unfade
     }
-    var firstPage = true
-    var searchTerm = ""
-    var isSearching = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,28 +31,24 @@ class ViewController: UIViewController {
             tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell") }
         if collectionView != nil {
             collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCell") }
-   /*     let tableNib = UINib(nibName: "TableViewCell", bundle: nil)
-        let collectionNib = UINib(nibName: "CollectionViewCell", bundle: nil)
-        if  tableView != nil  {
-            tableView.register(tableNib, forCellReuseIdentifier: "tableViewCell")
-        }
-        if collectionView != nil {
-            collectionView.register(collectionNib, forCellWithReuseIdentifier: "collectionViewCell")
-        } */
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.serviceCall()
+        self.serviceCall(searchString: "")
     }
     
-    func serviceCall () {
-        service.downloadJSON { [self](item) in
-            self.books = item.items!
-            DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.tableView.reloadData()
+    func serviceCall (searchString: String) {
+        service.downloadJSON(searchTerm: searchString) { [self](item) in
+            if item.items != nil {
+                self.books = item.items!  }
+            else {
+                return
             }
-         }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.tableView.reloadData()
+        }
+    }
     }
     
     @IBAction func switchAction(_ sender: UISegmentedControl) {
@@ -75,8 +67,11 @@ extension ViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
-            service.searchTerm = searchText
-            self.serviceCall()
+            var title = searchText
+             print("1: \(title.replacingOccurrences(of: " ", with: ""))")
+            print("2: \(title.replacingOccurrences(of: " ", with: ""))")
+          //  searchText.stringByAddingPercentWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            self.serviceCall(searchString: title.replacingOccurrences(of: " ", with: ""))
         }
 }
 }

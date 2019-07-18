@@ -12,14 +12,10 @@ import UIKit
 class Service {
     
     
-    let booksURL = "https://www.googleapis.com/books/v1/volumes?q="
-    var searchTerm = "John F Kennedy"
-    
-    func downloadJSON(completionHandler: @escaping (Books) -> Void ) {
+    func downloadJSON(searchTerm: String, completionHandler: @escaping (Books) -> Void ) {
         
-        let trimmedSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "")
-        let urlString: String = booksURL + trimmedSearchTerm
-        
+        let urlString: String = "https://www.googleapis.com/books/v1/volumes?q=\(searchTerm)"
+        print("here: \(searchTerm)")
         guard let downloadURL = URL(string: urlString) else {
             print("invalid URL address")
             return
