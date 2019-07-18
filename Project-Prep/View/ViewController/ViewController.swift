@@ -66,8 +66,8 @@ extension ViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
-            var title = searchText
-            self.serviceCall(searchString: title.replacingOccurrences(of: " ", with: ""))
+            let title = searchText
+            self.serviceCall(searchString: title.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? "")
         }
 }
 }
